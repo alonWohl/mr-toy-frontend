@@ -1,0 +1,40 @@
+.dashboard {
+	padding: 16px;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.dashboard h1 {
+	font-size: 28px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.charts-container {
+	display: grid;
+	gap: 20px;
+}
+
+.chart-wrapper {
+	background-color: white;
+	border-radius: 8px;
+	padding: 16px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	height: 400px;
+}
+
+@media (min-width: 768px) {
+	.charts-container {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.line-chart {
+		grid-column: span 2;
+	}
+}
+
+@media (max-width: 767px) {
+	.charts-container {
+		grid-template-columns: 1fr;
+	}
+}

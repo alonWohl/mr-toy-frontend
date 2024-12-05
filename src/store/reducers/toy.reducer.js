@@ -14,8 +14,11 @@ export const ADD_TOY_TO_CART = 'ADD_TOY_TO_CART'
 export const REMOVE_TOY_FROM_CART = 'REMOVE_TOY_FROM_CART'
 export const CLEAR_CART = 'CLEAR_CART'
 
+export const SET_CHARTS_DATA = 'SET_CHARTS_DATA'
+
 const initialStale = {
 	isLoading: false,
+	chartsData: {},
 	toys: [],
 	filterBy: toyService.getDefaultFilter()
 }
@@ -23,7 +26,7 @@ const initialStale = {
 export function toyReducer(state = initialStale, action) {
 	switch (action.type) {
 		case SET_TOYS:
-			return { ...state, toys: action.toys }
+			return { ...state, toys: action.toys, total: action.total }
 
 		case REMOVE_TOY:
 			const prevToys = [...state.toys]
@@ -70,6 +73,12 @@ export function toyReducer(state = initialStale, action) {
 
 		case CLEAR_CART:
 			return { ...state, shoppingCart: [] }
+
+		case SET_CHARTS_DATA:
+			return {
+				...state,
+				chartsData: action.chartsData
+			}
 
 		default:
 			return state

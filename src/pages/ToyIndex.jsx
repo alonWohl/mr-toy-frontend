@@ -10,8 +10,10 @@ import { PaginationButtons } from '../cmps/PaginationButtons.jsx'
 
 export function ToyIndex() {
 	const toys = useSelector(storState => storState.toyModule.toys)
+	const total = useSelector(storState => storState.toyModule.total)
 	const filterBy = useSelector(storState => storState.toyModule.filterBy)
 	const isLoading = useSelector(storState => storState.toyModule.isLoading)
+	console.log(total)
 
 	useEffect(() => {
 		loadToys().catch(() => {
@@ -34,11 +36,11 @@ export function ToyIndex() {
 	}
 
 	function onSetSort(sortBy) {
-		setFilter({ sortBy })
+		setFilter({ ...filterBy, sortBy: sortBy })
 	}
 
 	function setPageIdx(pageIdx) {
-		setFilter({ pageIdx })
+		setFilter({ ...filterBy, pageIdx: pageIdx })
 	}
 
 	return (
@@ -49,7 +51,7 @@ export function ToyIndex() {
 			<button className="btn">
 				<Link to="/toy/edit">Add Toy</Link>
 			</button>
-			<PaginationButtons pageIdx={filterBy.pageIdx} setPageIdx={setPageIdx} toysLength={toys.length} />
+			<PaginationButtons pageIdx={filterBy.pageIdx} setPageIdx={setPageIdx} toysLength={toys.length} total={total} />
 			{isLoading ? <div>loading...</div> : <ToyList toys={toys} onRemoveToy={onRemoveToy} />}
 		</section>
 	)

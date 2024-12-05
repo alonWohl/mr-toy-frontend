@@ -1,6 +1,6 @@
 import { toyService } from '../../services/toy.service.js'
 import { showSuccessMsg } from '../../services/event-bus.service.js'
-import { ADD_TOY, REMOVE_TOY, SET_TOYS, SET_FILTER_BY, SET_IS_LOADING, UPDATE_TOY } from '../reducers/toy.reducer.js'
+import { ADD_TOY, REMOVE_TOY, SET_TOYS, SET_FILTER_BY, SET_IS_LOADING, UPDATE_TOY, SET_CHARTS_DATA } from '../reducers/toy.reducer.js'
 import { store } from '../store.js'
 
 export function loadToys() {
@@ -9,8 +9,9 @@ export function loadToys() {
 
 	return toyService
 		.query(filterBy)
-		.then(toys => {
-			store.dispatch({ type: SET_TOYS, toys })
+		.then(({ toys, chartsData, total }) => {
+			store.dispatch({ type: SET_TOYS, toys, total })
+			_setChartsData(chartsData)
 		})
 		.catch(err => {
 			console.log('toy action -> Cannot load toys', err)
@@ -65,4 +66,11 @@ export function saveToy(toy) {
 
 export function setFilterBy(filterBy) {
 	store.dispatch({ type: SET_FILTER_BY, filterBy })
+}
+
+function _setChartsData(chartsData) {
+	store.dispatch({
+		type: SET_CHARTS_DATA,
+		chartsData
+	})
 }

@@ -16,6 +16,7 @@
 @import 'cmps/app-header.css';
 @import 'cmps/toy-list.css';
 @import 'cmps/toy-filter.css';
+@import 'cmps/dashboard.css';
 
 .app {
 	display: flex;
