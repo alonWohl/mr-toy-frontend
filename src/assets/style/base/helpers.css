@@ -1,0 +1,33 @@
+.flex {
+	display: flex;
+}
+
+.flex.flex-column {
+	flex-direction: column;
+}
+
+.flex.justify-center {
+	justify-content: center;
+}
+
+.flex.justify-between {
+	justify-content: space-between;
+}
+
+.flex.align-center {
+	align-items: center;
+}
+
+.clean-list {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+.green {
+	color: green;
+}
+
+.red {
+	color: red;
+}

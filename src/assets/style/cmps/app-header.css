@@ -1,0 +1,26 @@
+.app-header {
+	font-size: 1.5em;
+	padding: 1em;
+
+	font-family: Buenos-Aires;
+	background-color: var(--clr1);
+	color: white;
+}
+
+.app-nav > :not(:last-child) {
+	margin-inline-end: 0.5em;
+}
+
+.logo {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 2em;
+
+	-webkit-text-stroke-width: 1.5px;
+	-webkit-text-stroke-color: white;
+}
+
+.header-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

@@ -1,0 +1,32 @@
+/* BASE */
+
+@import 'base/base.css';
+@import 'base/layout.css';
+@import 'base/forms.css';
+@import 'base/helpers.css';
+
+/* SETUP */
+@import 'setup/vars.css';
+@import 'setup/typography.css';
+
+/* PAGES */
+
+/* CMPS */
+@import 'cmps/user-msg.css';
+@import 'cmps/app-header.css';
+@import 'cmps/toy-list.css';
+@import 'cmps/toy-filter.css';
+
+.app {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.app > * {
+	width: 100%;
+}
+
+main {
+	flex-grow: 1;
+}
