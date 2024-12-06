@@ -13,8 +13,8 @@ export function ToyList({ toys, onRemoveToy, addToyCart }) {
 						<button className="btn" onClick={() => onRemoveToy(toy._id)}>
 							X
 						</button>
-						<button onClick={() => addToyCart(toy)}>Add to cart</button>
 					</section>
+					<button onClick={() => addToyCart(toy)}>Add to cart</button>
 				</ToyPreview>
 			))}
 		</ul>

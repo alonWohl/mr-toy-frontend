@@ -53,7 +53,9 @@ export function ShoppingCart({ isCartShown, onToggleCart }) {
 			<button disabled={!user || !total} onClick={onCheckout}>
 				Checkout
 			</button>
-			<button onClick={() => onToggleCart()}>X</button>
+			<button className="btn close" onClick={() => onToggleCart()}>
+				X
+			</button>
 		</section>
 	)
 }

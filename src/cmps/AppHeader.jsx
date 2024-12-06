@@ -15,6 +15,7 @@ export function AppHeader() {
 	const dispatch = useDispatch()
 	const user = useSelector(storeState => storeState.userModule.loggedInUser)
 	const isCartShown = useSelector(storeState => storeState.toyModule.isCartShown)
+	const cartLength = useSelector(storeState => storeState.toyModule.shoppingCart.length)
 
 	function onLogout() {
 		logout()
@@ -40,8 +41,9 @@ export function AppHeader() {
 					<NavLink to="/about">About</NavLink>
 					<NavLink to="/toy">Toys</NavLink>
 					<NavLink to="/dashboard">Dashboard</NavLink>
-					<a onClick={onToggleCart} href="#">
+					<a className="shopping-cart-link" onClick={onToggleCart} href="#">
 						🛒 Cart
+						{cartLength > 0 && <span className="shopping-cart-count">{cartLength}</span>}
 					</a>
 				</nav>
 			</section>

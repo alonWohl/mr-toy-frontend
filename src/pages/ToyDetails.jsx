@@ -1,15 +1,24 @@
 import { useEffect, useState } from 'react'
-import { toyService } from '../services/toy.service.local'
+import { toyService } from '../services/toy.service.js'
 import { Link, useParams } from 'react-router-dom'
+import { showErrorMsg } from '../services/event-bus.service.js'
 
 export function ToyDetails() {
 	const [toy, setToy] = useState(null)
 	const { toyId } = useParams()
 
 	useEffect(() => {
-		toyService.getById(toyId).then(setToy)
+		loadToy()
 	}, [toyId])
 
+	function loadToy() {
+		toyService
+			.getById(toyId)
+			.then(toy => setToy(toy))
+			.catch(() => {
+				showErrorMsg('cannot find toy')
+			})
+	}
 	if (!toy) return <div>loading...</div>
 
 	const inStockClassName = toy.inStock ? 'green' : 'red'

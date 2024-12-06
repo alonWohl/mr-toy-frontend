@@ -7,7 +7,7 @@ export function ToyPreview({ toy, children }) {
 	return (
 		<li className="toy-preview">
 			<Link to={`/toy/${toy._id}`}>
-				<h2>{toy.name}</h2>
+				<h2 className="preview-title">{toy.name}</h2>
 			</Link>
 			<img src={`https://robohash.org/${toy._id}?set=set4`} alt="cat" />
 			<h4 className={inStockClassName}>{toy.inStock ? 'In Stock' : 'Not In Stock'}</h4>

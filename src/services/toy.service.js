@@ -23,7 +23,6 @@ function query(filterBy = {}) {
 function getById(toyId) {
 	return httpService.get(BASE_URL + toyId)
 }
-
 function remove(toyId) {
 	return httpService.delete(BASE_URL + toyId)
 }

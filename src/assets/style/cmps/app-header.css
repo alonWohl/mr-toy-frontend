@@ -24,3 +24,29 @@
 	justify-content: space-between;
 	align-items: center;
 }
+
+.shopping-cart-link {
+	position: relative;
+}
+
+.shopping-cart-count {
+	position: absolute;
+	background-color: red;
+	color: white;
+	width: 1em;
+	height: 1em;
+	padding: 0.6em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	bottom: 90%;
+	left: 90%;
+}
+
+.btn.close {
+	position: absolute;
+	margin: 0;
+	top: 1em;
+	right: 1em;
+}
