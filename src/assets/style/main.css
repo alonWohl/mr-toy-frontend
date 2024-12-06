@@ -14,8 +14,10 @@
 /* CMPS */
 @import 'cmps/user-msg.css';
 @import 'cmps/app-header.css';
+@import 'cmps/app-footer.css';
 @import 'cmps/toy-list.css';
 @import 'cmps/toy-filter.css';
+@import 'cmps/toy-edit.css';
 @import 'cmps/dashboard.css';
 
 .app {

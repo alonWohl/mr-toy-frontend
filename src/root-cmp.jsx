@@ -7,6 +7,7 @@ import { store } from './store/store.js'
 import { ToyDetails } from './pages/ToyDetails.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { Dashboard } from './pages/Dashboard.jsx'
+import { AppFooter } from './cmps/AppFooter.jsx'
 export function App() {
 	return (
 		<Provider store={store}>
@@ -26,6 +27,7 @@ export function App() {
 							<Route path="/cart" element={''} />
 						</Routes>
 					</main>
+					<AppFooter />
 				</section>
 			</Router>
 		</Provider>

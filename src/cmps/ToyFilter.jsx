@@ -1,13 +1,12 @@
-import { Children, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { utilService } from '../services/util.service.js'
 
 export function ToyFilter({ filterBy, onSetFilter, children }) {
 	const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
-
-	onSetFilter = useRef(utilService.debounce(onSetFilter, 300))
+	const debouncedFilter = useRef(utilService.debounce(onSetFilter, 300))
 
 	useEffect(() => {
-		onSetFilter.current(filterByToEdit)
+		debouncedFilter.current(filterByToEdit)
 	}, [filterByToEdit])
 
 	function handleChange({ target }) {
@@ -17,20 +16,29 @@ export function ToyFilter({ filterBy, onSetFilter, children }) {
 	}
 
 	return (
-		<section className="toy-filter main-layout">
-			<h2>Toys Filter</h2>
+		<section className="toy-filter">
 			<form>
-				<label htmlFor="txt">Search:</label>
-				<input onChange={handleChange} type="text" name="txt" placeholder="Name" id="txt" value={filterByToEdit.txt} />
+				<div className="filter-inputs">
+					<div className="filter-item">
+						<label htmlFor="txt">Search by name:</label>
+						<input onChange={handleChange} type="text" name="txt" placeholder="Enter toy name..." id="txt" value={filterByToEdit.txt} />
+					</div>
 
-				<label htmlFor="maxPrice">max price:</label>
-				<input onChange={handleChange} type="number" placeholder="Price" name="maxPrice" id="maxPrice" value={filterByToEdit.maxPrice} />
+					<div className="filter-item">
+						<label htmlFor="maxPrice">Max price:</label>
+						<input onChange={handleChange} type="number" placeholder="Enter max price" name="maxPrice" id="maxPrice" value={filterByToEdit.maxPrice} />
+					</div>
 
-				<select value={filterByToEdit.inStock || ''} onChange={handleChange} name="inStock">
-					<option value="">All</option>
-					<option value="true">In stock</option>
-					<option value="false">Not in stock</option>
-				</select>
+					<div className="filter-item">
+						<label htmlFor="inStock">Stock status:</label>
+						<select value={filterByToEdit.inStock || ''} onChange={handleChange} name="inStock" id="inStock">
+							<option value="">All toys</option>
+							<option value="true">In stock</option>
+							<option value="false">Out of stock</option>
+						</select>
+					</div>
+				</div>
+
 				{children}
 			</form>
 		</section>

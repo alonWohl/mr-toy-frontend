@@ -13,7 +13,6 @@ export function ToyIndex() {
 	const total = useSelector(storState => storState.toyModule.total)
 	const filterBy = useSelector(storState => storState.toyModule.filterBy)
 	const isLoading = useSelector(storState => storState.toyModule.isLoading)
-	console.log(total)
 
 	useEffect(() => {
 		loadToys().catch(() => {
@@ -45,8 +44,9 @@ export function ToyIndex() {
 
 	return (
 		<section className="toy-index">
-			<ToySort sortBy={filterBy.sortBy} onSetSort={onSetSort} />
-			<ToyFilter filterBy={filterBy} onSetFilter={setFilter} />
+			<ToyFilter filterBy={filterBy} onSetFilter={setFilter}>
+				<ToySort sortBy={filterBy.sortBy} onSetSort={onSetSort} />
+			</ToyFilter>
 
 			<button className="btn">
 				<Link to="/toy/edit">Add Toy</Link>
