@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { httpService } from './http.service.js'
 
 const BASE_URL = 'auth/'
@@ -38,7 +37,7 @@ function logout() {
 
 function updateScore(diff) {
 	if (getLoggedinUser().score + diff < 0) return Promise.reject('No credit')
-	return httpService.put('/api/user', { diff }).then(user => {
+	return httpService.put('user/', { diff }).then(user => {
 		console.log('updateScore user:', user)
 		_setLoggedinUser(user)
 		return user.score

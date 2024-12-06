@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ToyPreview } from './ToyPreview.jsx'
 
-export function ToyList({ toys, onRemoveToy }) {
+export function ToyList({ toys, onRemoveToy, addToyCart }) {
 	return (
 		<ul className="toy-list clean-list">
 			{toys.map(toy => (
@@ -13,6 +13,7 @@ export function ToyList({ toys, onRemoveToy }) {
 						<button className="btn" onClick={() => onRemoveToy(toy._id)}>
 							X
 						</button>
+						<button onClick={() => addToyCart(toy)}>Add to cart</button>
 					</section>
 				</ToyPreview>
 			))}

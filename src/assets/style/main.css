@@ -19,6 +19,7 @@
 @import 'cmps/toy-filter.css';
 @import 'cmps/toy-edit.css';
 @import 'cmps/dashboard.css';
+@import 'cmps/shopping-cart.css';
 
 .app {
 	display: flex;

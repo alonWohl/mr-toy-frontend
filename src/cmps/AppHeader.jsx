@@ -9,10 +9,12 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { UserMsg } from './UserMsg.jsx'
 import { LoginSignup } from './LoginSignup.jsx'
 import { Logo } from './Logo.jsx'
+import { ShoppingCart } from './ShoppingCart.jsx'
 
 export function AppHeader() {
 	const dispatch = useDispatch()
 	const user = useSelector(storeState => storeState.userModule.loggedInUser)
+	const isCartShown = useSelector(storeState => storeState.toyModule.isCartShown)
 
 	function onLogout() {
 		logout()
@@ -25,7 +27,7 @@ export function AppHeader() {
 	}
 
 	function onToggleCart(ev) {
-		ev.preventDefault()
+		if (ev) ev.preventDefault()
 		dispatch({ type: TOGGLE_CART_IS_SHOWN })
 	}
 
@@ -56,6 +58,7 @@ export function AppHeader() {
 				</section>
 			)}
 			<UserMsg />
+			<ShoppingCart isCartShown={isCartShown} onToggleCart={onToggleCart} />
 		</header>
 	)
 }

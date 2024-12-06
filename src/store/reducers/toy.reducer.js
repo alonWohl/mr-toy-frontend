@@ -20,7 +20,9 @@ const initialStale = {
 	isLoading: false,
 	chartsData: {},
 	toys: [],
-	filterBy: toyService.getDefaultFilter()
+	filterBy: toyService.getDefaultFilter(),
+	shoppingCart: [],
+	isCartShown: false
 }
 
 export function toyReducer(state = initialStale, action) {

@@ -10,8 +10,6 @@ const initialState = {
 
 export function userReducer(state = initialState, action = {}) {
 	switch (action.type) {
-		//* Count
-
 		//* User
 		case SET_USER:
 			return {
