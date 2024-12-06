@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { utilService } from '../services/util.service.js'
+import { toyService } from '../services/toy.service.js'
+import Autocomplete from '@mui/material/Autocomplete'
+import TextField from '@mui/material/TextField'
 
 export function ToyFilter({ filterBy, onSetFilter, children }) {
 	const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
@@ -13,6 +16,13 @@ export function ToyFilter({ filterBy, onSetFilter, children }) {
 		let { value, name: field, type } = target
 		value = type === 'number' ? +value : value
 		setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
+	}
+
+	function handleLabelsChange(event, newLabels) {
+		setFilterByToEdit(prevFilter => ({
+			...prevFilter,
+			labels: newLabels
+		}))
 	}
 
 	return (
@@ -36,6 +46,19 @@ export function ToyFilter({ filterBy, onSetFilter, children }) {
 							<option value="true">In stock</option>
 							<option value="false">Out of stock</option>
 						</select>
+					</div>
+
+					<div className="filter-item">
+						<label>Labels:</label>
+						<Autocomplete
+							multiple
+							id="labels"
+							options={toyService.labels}
+							value={filterByToEdit.labels || []}
+							onChange={handleLabelsChange}
+							renderInput={params => <TextField {...params} variant="outlined" placeholder="Select labels" size="small" />}
+							size="small"
+						/>
 					</div>
 				</div>
 

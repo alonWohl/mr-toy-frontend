@@ -106,6 +106,23 @@
 	user-select: none;
 }
 
+.filter-item .MuiAutocomplete-root {
+	width: 100%;
+}
+
+.filter-item .MuiOutlinedInput-root {
+	background-color: white;
+}
+
+.filter-item .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+	border-color: #4a90e2;
+}
+
+.filter-item .MuiAutocomplete-root .MuiOutlinedInput-root {
+	min-height: 38px;
+	padding: 0 9px;
+}
+
 /* Responsive */
 @media (max-width: 480px) {
 	.sort-controls {
