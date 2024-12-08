@@ -1,4 +1,6 @@
 .user-msg {
+	display: flex;
+	align-items: center;
 	background-color: lightgray;
 	padding: 1.5em 2.5em;
 	position: fixed;
@@ -10,7 +12,7 @@
 }
 
 .user-msg.success {
-	background-color: var(--clr1);
+	background-color: var(--clr2bg);
 }
 
 .user-msg.error {
