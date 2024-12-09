@@ -20,6 +20,8 @@
 @import 'cmps/toy-edit.css';
 @import 'cmps/dashboard.css';
 @import 'cmps/shopping-cart.css';
+@import 'cmps/google-maps.css';
+@import 'cmps/about-us.css';
 
 .app {
 	display: flex;

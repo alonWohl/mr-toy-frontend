@@ -1,0 +1,15 @@
+.map-container {
+	margin: 48px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.button-container {
+	display: flex;
+	gap: 1em;
+}
+
+.marker {
+	font-size: 2rem;
+}
