@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import { TOGGLE_CART_IS_SHOWN } from '../store/reducers/toy.reducer.js'
 import { logout } from '../store/actions/user.actions.js'
@@ -18,13 +18,12 @@ export function AppHeader() {
 	const cartLength = useSelector(storeState => storeState.toyModule.shoppingCart.length)
 
 	function onLogout() {
-		logout()
-			.then(() => {
-				showSuccessMsg('logout successfully')
-			})
-			.catch(() => {
-				showErrorMsg('OOPs try again')
-			})
+		try {
+			logout()
+			showSuccessMsg('logout successfully')
+		} catch {
+			showErrorMsg('OOPs try again')
+		}
 	}
 
 	function onToggleCart(ev) {
@@ -49,9 +48,9 @@ export function AppHeader() {
 			</section>
 			{user ? (
 				<section>
-					<span to={`/user/${user._id}`}>
+					<Link to={`/user/${user._id}`}>
 						Hello {user.fullname} <span>${user.score.toLocaleString()}</span>
-					</span>
+					</Link>
 					<button onClick={onLogout}>Logout</button>
 				</section>
 			) : (

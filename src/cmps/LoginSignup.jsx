@@ -12,23 +12,21 @@ export function LoginSignup() {
 	}
 
 	function _login(credentials) {
-		login(credentials)
-			.then(() => {
-				showSuccessMsg('Logged in successfully')
-			})
-			.catch(err => {
-				showErrorMsg('Oops try again')
-			})
+		try {
+			login(credentials)
+			showSuccessMsg('Logged in successfully')
+		} catch {
+			showErrorMsg('Oops try again')
+		}
 	}
 
 	function _signup(credentials) {
-		signup(credentials)
-			.then(() => {
-				showSuccessMsg('Signed in successfully')
-			})
-			.catch(err => {
-				showErrorMsg('Oops try again')
-			})
+		try {
+			signup(credentials)
+			showSuccessMsg('Signed in successfully')
+		} catch {
+			showErrorMsg('Oops try again')
+		}
 	}
 
 	return (

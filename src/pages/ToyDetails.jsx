@@ -11,13 +11,13 @@ export function ToyDetails() {
 		loadToy()
 	}, [toyId])
 
-	function loadToy() {
-		toyService
-			.getById(toyId)
-			.then(toy => setToy(toy))
-			.catch(() => {
-				showErrorMsg('cannot find toy')
-			})
+	async function loadToy() {
+		try {
+			const toy = await toyService.getById(toyId)
+			setToy(toy)
+		} catch {
+			showErrorMsg('cannot find toy')
+		}
 	}
 	if (!toy) return <div>loading...</div>
 

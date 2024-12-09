@@ -18,23 +18,20 @@ export function ToyIndex() {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		loadToys().catch(() => {
-			showErrorMsg('cannot load toys !')
-		})
+		loadToys()
 	}, [filterBy])
 
 	function setFilter(filterBy) {
 		setFilterBy(filterBy)
 	}
 
-	function onRemoveToy(toyId) {
-		removeToy(toyId)
-			.then(() => {
-				showSuccessMsg('toy removed successfully')
-			})
-			.catch(() => {
-				showErrorMsg('cannot remove toy')
-			})
+	async function onRemoveToy(toyId) {
+		try {
+			await removeToy(toyId)
+			showSuccessMsg('toy removed successfully')
+		} catch (err) {
+			showErrorMsg('cannot remove toy')
+		}
 	}
 
 	function onSetSort(sortBy) {
