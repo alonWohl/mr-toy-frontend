@@ -6,8 +6,6 @@ import { logout } from '../store/actions/user.actions.js'
 
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 
-import { UserMsg } from './UserMsg.jsx'
-import { LoginSignup } from './LoginSignup.jsx'
 import { Logo } from './Logo.jsx'
 import { ShoppingCart } from './ShoppingCart.jsx'
 
@@ -49,7 +47,7 @@ export function AppHeader() {
 					</div>
 					{user ? (
 						<div className="login-link">
-							<span>Welcome {user.fullname}</span>
+							<Link to={`/user/${user._id}`}>Welcome {user.fullname}</Link>
 							<button onClick={onLogout}>logout</button>
 						</div>
 					) : (

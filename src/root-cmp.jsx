@@ -28,6 +28,7 @@ export function App() {
 							<Route path="/about" element={<AboutUs />} />
 							<Route path="/cart" element={''} />
 							<Route path="/login" element={<LoginSignup />} />
+							<Route path="/user/:id" element={''} />
 						</Routes>
 					</main>
 					<AppFooter />
