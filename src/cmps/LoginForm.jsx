@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export function LoginForm({ onLogin, isSignup }) {
 	const [credentials, setCredentials] = useState({
@@ -12,6 +13,8 @@ export function LoginForm({ onLogin, isSignup }) {
 		password: '',
 		fullname: ''
 	})
+
+	const navigate = useNavigate()
 
 	const validateField = (name, value) => {
 		switch (name) {
@@ -55,6 +58,7 @@ export function LoginForm({ onLogin, isSignup }) {
 
 		if (!hasErrors) {
 			onLogin(credentials)
+			navigate('/')
 		}
 	}
 

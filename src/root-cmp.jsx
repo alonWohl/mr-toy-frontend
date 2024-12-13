@@ -9,6 +9,7 @@ import { ToyEdit } from './pages/ToyEdit.jsx'
 import { Dashboard } from './pages/Dashboard.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
+import { LoginSignup } from './cmps/LoginSignup.jsx'
 export function App() {
 	return (
 		<Provider store={store}>
@@ -26,6 +27,7 @@ export function App() {
 
 							<Route path="/about" element={<AboutUs />} />
 							<Route path="/cart" element={''} />
+							<Route path="/login" element={<LoginSignup />} />
 						</Routes>
 					</main>
 					<AppFooter />

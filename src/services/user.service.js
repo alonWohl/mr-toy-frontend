@@ -13,12 +13,14 @@ export const userService = {
 	getEmptyCredentials
 }
 
-function login({ username, password }) {
-	return httpService.post(BASE_URL + 'login', { username, password }).then(user => {
+async function login({ username, password }) {
+	try {
+		const user = await httpService.post(BASE_URL + 'login', { username, password })
 		console.log('user FETCH:', user)
 		if (user) return _setLoggedinUser(user)
-		else return Promise.reject('Invalid login')
-	})
+	} catch {
+		throw new Error('Invalid login')
+	}
 }
 
 function signup({ username, password, fullname }) {
@@ -53,7 +55,7 @@ function getLoggedinUser() {
 }
 
 function _setLoggedinUser(user) {
-	const userToSave = { _id: user._id, fullname: user.fullname, score: user.score }
+	const userToSave = { _id: user._id, fullname: user.fullname, score: user.score, isAdmin: user.isAdmin }
 	sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
 	return userToSave
 }

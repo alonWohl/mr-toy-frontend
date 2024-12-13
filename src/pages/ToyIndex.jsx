@@ -14,6 +14,8 @@ export function ToyIndex() {
 	const total = useSelector(storState => storState.toyModule.total)
 	const filterBy = useSelector(storState => storState.toyModule.filterBy)
 	const isLoading = useSelector(storState => storState.toyModule.isLoading)
+	const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
+	const isAdmin = loggedInUser?.isAdmin || false
 
 	const dispatch = useDispatch()
 
@@ -58,7 +60,7 @@ export function ToyIndex() {
 				<Link to="/toy/edit">Add Toy</Link>
 			</button>
 			<PaginationButtons pageIdx={filterBy.pageIdx} setPageIdx={setPageIdx} toysLength={toys.length} total={total} />
-			{isLoading ? <div>loading...</div> : <ToyList toys={toys} onRemoveToy={onRemoveToy} addToyCart={addToyToCart} />}
+			{isLoading ? <div>loading...</div> : <ToyList toys={toys} onRemoveToy={onRemoveToy} addToyCart={addToyToCart} isAdmin={isAdmin} />}
 		</section>
 	)
 }

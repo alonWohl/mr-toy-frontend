@@ -35,30 +35,29 @@ export function AppHeader() {
 		<header className="app-header">
 			<section className="header-container">
 				<Logo />
+
 				<nav className="app-nav">
-					<NavLink to="/">Home</NavLink>
-					<NavLink to="/about">About</NavLink>
-					<NavLink to="/toy">Toys</NavLink>
-					<NavLink to="/dashboard">Dashboard</NavLink>
-					<a className="shopping-cart-link" onClick={onToggleCart} href="#">
-						🛒 Cart
-						{cartLength > 0 && <span className="shopping-cart-count">{cartLength}</span>}
-					</a>
+					<div className="nav-links">
+						<NavLink to="/">Home</NavLink>
+						<NavLink to="/about">About</NavLink>
+						<NavLink to="/toy">Toys</NavLink>
+						<NavLink to="/dashboard">Dashboard</NavLink>
+						<a className="shopping-cart-link" onClick={onToggleCart} href="#">
+							🛒 Cart
+							{cartLength > 0 && <span className="shopping-cart-count">{cartLength}</span>}
+						</a>
+					</div>
+					{user ? (
+						<div className="login-link">
+							<span>Welcome {user.fullname}</span>
+							<button onClick={onLogout}>logout</button>
+						</div>
+					) : (
+						<NavLink to="login">login</NavLink>
+					)}
 				</nav>
 			</section>
-			{user ? (
-				<section>
-					<Link to={`/user/${user._id}`}>
-						Hello {user.fullname} <span>${user.score.toLocaleString()}</span>
-					</Link>
-					<button onClick={onLogout}>Logout</button>
-				</section>
-			) : (
-				<section>
-					<LoginSignup />
-				</section>
-			)}
-			<UserMsg />
+
 			<ShoppingCart isCartShown={isCartShown} onToggleCart={onToggleCart} />
 		</header>
 	)
