@@ -19,9 +19,9 @@ export function LoginForm({ onLogin, isSignup }) {
 	const validateField = (name, value) => {
 		switch (name) {
 			case 'username':
-				return value.length < 2 ? 'Username must be at least 2 characters' : ''
+				return value.length < 4 ? 'Username must be at least 4 characters' : ''
 			case 'password':
-				return value.length < 2 ? 'Password must be at least 2 characters' : ''
+				return value.length < 4 ? 'Password must be at least 4 characters' : ''
 			case 'fullname':
 				return isSignup && !value ? 'Full name is required' : ''
 			default:
