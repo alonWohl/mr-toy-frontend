@@ -25,7 +25,7 @@ export function GoogleMaps() {
 			<div className="button-container">
 				{branches.map(branch => (
 					<button key={branch.id} onClick={() => focusOnBranch(branch)} className="focus-button">
-						Focus on {branch.name}
+						{branch.name}
 					</button>
 				))}
 			</div>
