@@ -10,6 +10,7 @@ import { Dashboard } from './pages/Dashboard.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
 import { LoginSignup } from './cmps/LoginSignup.jsx'
+
 export function App() {
 	return (
 		<Provider store={store}>

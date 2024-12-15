@@ -1,0 +1,138 @@
+.toy-filter {
+	width: 100%;
+	background: var(--clr2bg);
+	padding: 20px;
+	/* border-radius: 8px; */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+
+	.filter-inputs {
+		display: flex;
+		gap: 20px;
+		flex-wrap: wrap;
+	}
+
+	.filter-item {
+		flex: 1;
+		min-width: 200px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.filter-item label {
+		font-weight: 500;
+		color: #333;
+		font-size: 0.9rem;
+	}
+
+	.filter-item input,
+	.filter-item select {
+		padding: 8px 12px;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		font-size: 1rem;
+		transition: border-color 0.2s;
+	}
+
+	.filter-item input:focus,
+	.filter-item select:focus {
+		outline: none;
+		border-color: #4a90e2;
+		box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+	}
+
+	.filter-item input::placeholder {
+		color: #aaa;
+	}
+
+	.filter-item select {
+		background-color: white;
+		cursor: pointer;
+	}
+
+	/* Responsive adjustments */
+	@media (max-width: 768px) {
+		.filter-inputs {
+			flex-direction: column;
+			gap: 15px;
+		}
+
+		.filter-item {
+			width: 100%;
+		}
+	}
+
+	.toy-sort {
+		margin: 20px 0;
+	}
+
+	.sort-controls {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
+	.sort-select {
+		padding: 8px 12px;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		font-size: 1rem;
+		background-color: white;
+		cursor: pointer;
+		min-width: 120px;
+	}
+
+	.sort-select:focus {
+		outline: none;
+		border-color: #4a90e2;
+		box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+	}
+
+	.sort-direction {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		cursor: pointer;
+	}
+
+	.sort-direction input[type='checkbox'] {
+		width: 16px;
+		height: 16px;
+		cursor: pointer;
+	}
+
+	.sort-direction span {
+		user-select: none;
+	}
+
+	.filter-item .MuiAutocomplete-root {
+		width: 100%;
+	}
+
+	.filter-item .MuiOutlinedInput-root {
+		background-color: white;
+	}
+
+	.filter-item .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+		border-color: #4a90e2;
+	}
+
+	.filter-item .MuiAutocomplete-root .MuiOutlinedInput-root {
+		min-height: 38px;
+		padding: 0 9px;
+	}
+
+	/* Responsive */
+	@media (max-width: 480px) {
+		.sort-controls {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 12px;
+		}
+
+		.sort-select {
+			width: 100%;
+		}
+	}
+}

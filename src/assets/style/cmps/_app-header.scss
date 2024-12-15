@@ -1,0 +1,40 @@
+.app-header {
+	font-family: Buenos-Aires;
+	font-size: 1.5rem;
+	padding: 1em;
+
+	background-color: var(--clr1);
+	color: white;
+
+	.app-nav {
+		display: flex;
+		align-items: center;
+		margin-inline-start: 1em;
+		width: 90%;
+		justify-content: space-between;
+		& > :not(:last-child) {
+			margin-inline-end: 0.5em;
+		}
+
+		& .nav-links a {
+			margin-inline: 0.5em;
+		}
+	}
+	.header-container {
+		display: flex;
+		align-items: center;
+
+		.logo {
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+			font-size: 2em;
+
+			-webkit-text-stroke-width: 1.5px;
+			-webkit-text-stroke-color: white;
+
+			.login-link {
+				display: flex;
+				align-items: center;
+			}
+		}
+	}
+}
