@@ -8,6 +8,7 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 
 import { Logo } from './Logo.jsx'
 import { ShoppingCart } from './ShoppingCart.jsx'
+import { UserMsg } from './UserMsg.jsx'
 
 export function AppHeader() {
 	const dispatch = useDispatch()
@@ -55,7 +56,7 @@ export function AppHeader() {
 					)}
 				</nav>
 			</section>
-
+			<UserMsg />
 			<ShoppingCart isCartShown={isCartShown} onToggleCart={onToggleCart} />
 		</header>
 	)
