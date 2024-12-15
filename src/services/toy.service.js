@@ -28,7 +28,10 @@ function remove(toyId) {
 
 function save(toy) {
 	const method = toy._id ? 'put' : 'post'
-	return httpService[method](BASE_URL, toy)
+	if (method === 'put') {
+		return httpService.put(BASE_URL + toy._id, toy)
+	}
+	return httpService.post(BASE_URL, toy)
 }
 
 function getDefaultFilter() {
