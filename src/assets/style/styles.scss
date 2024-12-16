@@ -1,31 +1,31 @@
 // SETUP //
 
-@import './setup/vars';
-@import './setup/typography.css';
+@import 'setup/vars';
+@import 'setup/typography.css';
 
 // BASE //
 
-@import './base/base';
-@import './base/helpers';
-@import './base/layout';
-@import './base/forms';
+@import 'base/base';
+@import 'base/helpers';
+@import 'base/layout';
+@import 'base/forms';
 
 // VIEWS //
-@import './views/toy-index';
-@import './views/home-page';
+@import 'views/toy-index';
+@import 'views/home-page';
 
 // CMPS //
-@import './cmps/app-header';
-@import './cmps/toy-list';
-@import './cmps/toy-filter';
-@import './cmps/dashboard';
-@import './cmps/app-footer';
-@import './cmps/login-page';
-@import './cmps/about-us';
-@import './cmps/google-maps';
-@import './cmps/shopping-cart';
-@import './cmps/toy-edit';
-@import './cmps/user-msg';
+@import 'cmps/app-header';
+@import 'cmps/toy-list';
+@import 'cmps/toy-filter';
+@import 'cmps/dashboard';
+@import 'cmps/app-footer';
+@import 'cmps/login-page';
+@import 'cmps/about-us';
+@import 'cmps/google-maps';
+@import 'cmps/shopping-cart';
+@import 'cmps/toy-edit';
+@import 'cmps/user-msg';
 
 .app {
 	display: flex;

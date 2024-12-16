@@ -32,7 +32,6 @@ export function ToySort({ sortBy, onSetSort }) {
 					<option value="price">Price</option>
 					<option value="createdAt">Date</option>
 				</select>
-
 				<label className="sort-direction">
 					<input type="checkbox" name="desc" checked={sortByToEdit.desc === -1} onChange={handleChange} />
 					<span>Descending</span>

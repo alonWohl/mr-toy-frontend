@@ -58,6 +58,7 @@ export function ToyFilter({ filterBy, onSetFilter, children }) {
 							onChange={handleLabelsChange}
 							renderInput={params => <TextField {...params} variant="outlined" placeholder="Select labels" size="small" />}
 							size="small"
+							style={{ background: 'white', padding: '0' }}
 						/>
 					</div>
 				</div>
