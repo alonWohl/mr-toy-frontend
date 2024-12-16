@@ -38,9 +38,12 @@ function logout() {
 }
 
 function updateScore(diff) {
-	if (getLoggedinUser().score + diff < 0) return Promise.reject('No credit')
-	return httpService.put('user/', { diff }).then(user => {
-		console.log('updateScore user:', user)
+	const user = getLoggedinUser()
+
+	if (!user) throw new Error('Not logged in')
+	if (user.score + diff < 0) return Promise.reject('No credit')
+
+	return httpService.put(`user/${user._id}`, { diff }).then(user => {
 		_setLoggedinUser(user)
 		return user.score
 	})

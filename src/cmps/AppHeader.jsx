@@ -48,7 +48,9 @@ export function AppHeader() {
 					</div>
 					{user ? (
 						<div className="login-link">
-							<Link to={`/user/${user._id}`}>Welcome {user.fullname}</Link>
+							<Link to={`/user/${user._id}`}>
+								Welcome {user.fullname} Balance: {user.score}
+							</Link>
 							<button onClick={onLogout}>logout</button>
 						</div>
 					) : (
