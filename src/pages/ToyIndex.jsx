@@ -56,9 +56,11 @@ export function ToyIndex() {
 				<ToySort sortBy={filterBy.sortBy} onSetSort={onSetSort} />
 			</ToyFilter>
 
-			<button className="btn">
-				<Link to="/toy/edit">Add Toy</Link>
-			</button>
+			{isAdmin && (
+				<button className="btn">
+					<Link to="/toy/edit">Add Toy</Link>
+				</button>
+			)}
 			<PaginationButtons pageIdx={filterBy.pageIdx} setPageIdx={setPageIdx} toysLength={toys.length} total={total} />
 			{isLoading ? <div>loading...</div> : <ToyList toys={toys} onRemoveToy={onRemoveToy} addToyCart={addToyToCart} isAdmin={isAdmin} />}
 		</section>

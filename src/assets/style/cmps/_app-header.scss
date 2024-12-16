@@ -2,38 +2,146 @@
 	font-family: Buenos-Aires;
 	font-size: 1.5rem;
 	padding: 1em;
-
 	background-color: var(--clr1);
 	color: white;
 
-	.app-nav {
-		display: flex;
-		align-items: center;
-		margin-inline-start: 1em;
-		width: 90%;
-		justify-content: space-between;
-		& > :not(:last-child) {
-			margin-inline-end: 0.5em;
-		}
-
-		& .nav-links a {
-			margin-inline: 0.5em;
-		}
-	}
+	// Header Container
 	.header-container {
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
+		position: relative;
 
 		.logo {
 			font-family: Verdana, Geneva, Tahoma, sans-serif;
 			font-size: 2em;
+			-webkit-text-stroke: 1.5px white;
+		}
 
-			-webkit-text-stroke-width: 1.5px;
-			-webkit-text-stroke-color: white;
+		.hamburger-menu {
+			display: none;
+			cursor: pointer;
+			padding: 0.5em;
+			font-size: 1.8rem;
+
+			@media (max-width: 900px) {
+				display: block;
+			}
+		}
+	}
+
+	// Navigation
+	.app-nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-inline-start: 1em;
+		width: 90%;
+		z-index: 2;
+
+		.nav-links {
+			display: flex;
+			align-items: center;
+
+			a {
+				margin-inline: 0.5em;
+				padding: 0.5em;
+				transition: color 0.3s ease;
+
+				&:hover {
+					// color: var(--clr2);
+				}
+
+				&.active {
+					text-decoration: underline;
+				}
+			}
+
+			.shopping-cart-link {
+				position: relative;
+
+				.shopping-cart-count {
+					position: absolute;
+					top: -8px;
+					right: -8px;
+					background-color: red;
+					border-radius: 50%;
+					padding: 2px 6px;
+					font-size: 0.8rem;
+				}
+			}
+		}
+
+		.login-link {
+			display: flex;
+			align-items: center;
+			gap: 1em;
+
+			button {
+				padding: 0.5em 1em;
+				border-radius: 4px;
+				border: none;
+				cursor: pointer;
+				background-color: white;
+				transition: background-color 0.3s ease;
+
+				&:hover {
+					color: white;
+				}
+			}
+		}
+
+		// Mobile Navigation
+		@media (max-width: 900px) {
+			display: none;
+			position: fixed;
+			justify-content: stretch;
+			top: 0;
+			left: 0;
+			height: 100vh;
+			width: 100%;
+			margin: 0;
+			margin-block-start: 106px;
+			background-color: var(--clr1);
+			flex-direction: column;
+			transition: transform 0.3s ease-in-out;
+			overflow-y: auto;
+			-webkit-overflow-scrolling: touch;
+			padding-bottom: 2em;
+
+			&.menu-open {
+				display: flex;
+			}
+
+			.nav-links {
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+
+				a {
+					padding: 1em 0;
+					width: 100%;
+					text-align: center;
+					margin: 0;
+
+					&:hover {
+						background-color: rgba(255, 255, 255, 0.1);
+					}
+				}
+
+				.shopping-cart-link {
+					width: auto;
+				}
+			}
 
 			.login-link {
-				display: flex;
-				align-items: center;
+				flex-direction: column;
+				margin-top: 2em;
+
+				button {
+					margin-top: 1em;
+				}
 			}
 		}
 	}
