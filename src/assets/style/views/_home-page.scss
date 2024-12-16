@@ -1,0 +1,94 @@
+.home-page {
+	padding: 2em;
+	max-width: 1200px;
+	margin: 0 auto;
+
+	.hero-section {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 2em;
+		margin-bottom: 4em;
+
+		@media (max-width: 768px) {
+			text-align: center;
+		}
+
+		.hero-content {
+			flex: 1;
+
+			h1 {
+				font-size: 3em;
+				margin-bottom: 0.5em;
+				color: var(--clr1);
+			}
+
+			p {
+				font-size: 1.2em;
+				margin-bottom: 1.5em;
+				color: #666;
+			}
+
+			.shop-now-btn {
+				display: inline-block;
+				padding: 1em 2em;
+				background-color: var(--clr1);
+				color: white;
+				border-radius: 30px;
+				text-decoration: none;
+				transition: transform 0.3s ease;
+
+				&:hover {
+					transform: scale(1.05);
+				}
+			}
+		}
+
+		.hero-image {
+			flex: 1;
+			max-width: 500px;
+			border-radius: 20px;
+			// box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+			transition: transform 0.3s ease;
+
+			&:hover {
+				transform: translateY(-5px);
+			}
+		}
+	}
+
+	.features-section {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2em;
+		padding: 2em 0;
+
+		.feature-card {
+			text-align: center;
+			padding: 2em;
+			background-color: white;
+			border-radius: 15px;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+			transition: transform 0.3s ease;
+
+			&:hover {
+				transform: translateY(-5px);
+			}
+
+			.icon {
+				font-size: 2.5em;
+				margin-bottom: 0.5em;
+				display: block;
+			}
+
+			h3 {
+				color: var(--clr1);
+				margin-bottom: 0.5em;
+			}
+
+			p {
+				color: #666;
+			}
+		}
+	}
+}
