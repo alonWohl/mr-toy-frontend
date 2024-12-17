@@ -1,31 +1,48 @@
 .app-header {
 	font-family: Buenos-Aires;
-	font-size: 1.5rem;
-	padding: 1em;
+	font-size: map-get(map-get($typography, font-size), xl);
+	padding: spacing(md);
 	background-color: var(--clr1);
 	color: white;
+	position: sticky;
+	top: 0;
+	z-index: map-get($z-index, header);
+	box-shadow: map-get($shadows, sm);
 
 	// Header Container
 	.header-container {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		position: relative;
+		@include flex($justify: space-between);
+		max-width: layout(container-max-width);
+		margin: 0 auto;
+		padding: 0 spacing(md);
 
 		.logo {
-			text-wrap: nowrap;
+			white-space: nowrap;
 			font-family: Verdana, Geneva, Tahoma, sans-serif;
 			font-size: 2em;
 			-webkit-text-stroke: 1.5px white;
+			transition: transform 0.3s ease;
+
+			&:hover {
+				transform: scale(1.05);
+			}
 		}
 
 		.hamburger-menu {
 			display: none;
 			cursor: pointer;
-			padding: 0.5em;
+			padding: spacing(sm);
 			font-size: 1.8rem;
+			border: none;
+			background: none;
+			color: white;
+			transition: transform 0.3s ease;
 
-			@media (max-width: 900px) {
+			&:hover {
+				transform: scale(1.1);
+			}
+
+			@include mobile {
 				display: block;
 			}
 		}
@@ -33,28 +50,38 @@
 
 	// Navigation
 	.app-nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		margin-inline-start: 1em;
+		@include flex($justify: space-between);
+		margin-inline-start: spacing(md);
 		width: 90%;
-		z-index: 2;
 
 		.nav-links {
-			display: flex;
-			align-items: center;
+			@include flex;
+			gap: spacing(sm);
 
 			a {
-				margin-inline: 0.5em;
-				padding: 0.5em;
-				transition: color 0.3s ease;
+				padding: spacing(sm);
+				transition: all 0.3s ease;
+				position: relative;
 
-				&:hover {
-					// color: var(--clr2);
+				&::after {
+					content: '';
+					position: absolute;
+					bottom: 0;
+					left: 50%;
+					width: 0;
+					height: 2px;
+					background-color: white;
+					transition: all 0.3s ease;
+					transform: translateX(-50%);
+				}
+
+				&:hover::after,
+				&.active::after {
+					width: 100%;
 				}
 
 				&.active {
-					text-decoration: underline;
+					font-weight: bold;
 				}
 			}
 
@@ -65,38 +92,38 @@
 					position: absolute;
 					top: -8px;
 					right: -8px;
-					background-color: red;
+					background-color: color(error);
 					border-radius: 50%;
-					padding: 2px 6px;
-					font-size: 0.8rem;
+					padding: 2px spacing(xs);
+					font-size: map-get(map-get($typography, font-size), xs);
+					min-width: 20px;
+					height: 20px;
+					@include flex;
 				}
 			}
 		}
 
 		.login-link {
-			display: flex;
-			align-items: center;
-			gap: 1em;
+			@include flex;
+			gap: spacing(md);
 
 			button {
-				padding: 0.5em 1em;
-				border-radius: 4px;
-				border: none;
-				cursor: pointer;
+				@include button-base;
 				background-color: white;
-				transition: background-color 0.3s ease;
+				color: var(--clr1);
+				transition: all 0.3s ease;
 
 				&:hover {
-					color: white;
+					background-color: rgba(white, 0.9);
+					transform: translateY(-2px);
 				}
 			}
 		}
 
 		// Mobile Navigation
-		@media (max-width: 900px) {
+		@include mobile {
 			display: none;
 			position: fixed;
-			justify-content: stretch;
 			top: 0;
 			left: 0;
 			height: 100vh;
@@ -105,45 +132,59 @@
 			margin-block-start: 106px;
 			background-color: var(--clr1);
 			flex-direction: column;
-			transition: transform 0.3s ease-in-out;
+			padding: spacing(lg) spacing(md);
+			transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 			overflow-y: auto;
 			-webkit-overflow-scrolling: touch;
-			padding-bottom: 2em;
 
 			&.menu-open {
 				display: flex;
+				animation: slide-in 0.3s forwards;
 			}
 
 			.nav-links {
 				flex-direction: column;
-				justify-content: center;
-				align-items: center;
 				width: 100%;
+				gap: spacing(md);
 
 				a {
-					padding: 1em 0;
 					width: 100%;
 					text-align: center;
-					margin: 0;
+					padding: spacing(md);
+					border-radius: layout(border-radius);
 
 					&:hover {
-						background-color: rgba(255, 255, 255, 0.1);
+						background-color: rgba(white, 0.1);
 					}
-				}
 
-				.shopping-cart-link {
-					width: auto;
+					&::after {
+						display: none;
+					}
 				}
 			}
 
 			.login-link {
 				flex-direction: column;
-				margin-top: 2em;
+				margin-top: spacing(xl);
+				width: 100%;
 
 				button {
-					margin-top: 1em;
+					width: 100%;
+					margin-top: spacing(sm);
 				}
 			}
 		}
+	}
+}
+
+// Animation for mobile menu
+@keyframes slide-in {
+	from {
+		opacity: 0;
+		transform: translateX(-100%);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
 	}
 }

@@ -1,26 +1,83 @@
 .user-msg {
-	display: flex;
-	align-items: center;
-	background-color: lightgray;
-	padding: 1.5em 2.5em;
+	@include flex($align: center);
 	position: fixed;
-	bottom: 2rem;
-	right: 1em;
+	bottom: spacing(lg);
+	right: spacing(md);
+	padding: spacing(md) spacing(lg);
+	min-width: 200px;
+	max-width: 400px;
 	color: white;
-	border-radius: 2px;
-	font-size: 1.1em;
+	border-radius: layout(border-radius);
+	font-size: map-get(map-get($typography, font-size), lg);
+	background-color: color(text, muted);
+	box-shadow: map-get($shadows, md);
+	z-index: map-get($z-index, modal);
+	animation: slide-in 0.3s ease-out;
+
+	&.success {
+		background-color: var(--clr2bg);
+	}
+
+	&.error {
+		background-color: rgba(color(error), 0.9);
+	}
+
+	button {
+		@include button-base;
+		margin-left: spacing(sm);
+		padding: spacing(xs);
+		font-size: map-get(map-get($typography, font-size), sm);
+		background: none;
+		border: none;
+		color: white;
+		opacity: 0.8;
+		cursor: pointer;
+		transition: opacity 0.2s ease;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+
+	// Close button icon
+	.close-icon {
+		position: absolute;
+		top: spacing(xs);
+		right: spacing(xs);
+		font-size: map-get(map-get($typography, font-size), sm);
+	}
+
+	@include mobile {
+		bottom: spacing(md);
+		right: spacing(sm);
+		left: spacing(sm);
+		max-width: none;
+		font-size: map-get(map-get($typography, font-size), base);
+	}
 }
 
-.user-msg.success {
-	background-color: var(--clr2bg);
+@keyframes slide-in {
+	from {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
 }
 
-.user-msg.error {
-	background-color: rgba(red, 0.8);
+@keyframes slide-out {
+	from {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	to {
+		transform: translateX(100%);
+		opacity: 0;
+	}
 }
 
-.user-msg button {
-	font-size: 0.8em;
-	float: right;
-	margin: 0.5em;
+.user-msg.removing {
+	animation: slide-out 0.3s ease-out forwards;
 }

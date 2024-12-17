@@ -1,0 +1,155 @@
+.toy-details {
+	@include container;
+
+	&-header {
+		@include flex($justify: flex-start);
+		gap: spacing(md);
+		margin-bottom: spacing(lg);
+
+		h1 {
+			@include heading('xl');
+			color: color(text, primary);
+		}
+	}
+
+	&-content {
+		@include flex(column, flex-start);
+		gap: spacing(lg);
+	}
+
+	&-main {
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		gap: spacing(xl);
+		padding: spacing(lg);
+		background: color(background, white);
+		@include card-shadow;
+
+		@include mobile {
+			grid-template-columns: 1fr;
+			gap: spacing(md);
+		}
+	}
+
+	.toy-image {
+		width: 100%;
+		max-height: 300px;
+		object-fit: contain;
+		border-radius: layout(border-radius);
+	}
+
+	.toy-info {
+		@include flex(column, flex-start);
+		gap: spacing(md);
+
+		.toy-price {
+			font-size: map-get(map-get($typography, font-size), xl);
+			color: color(primary);
+			font-weight: bold;
+		}
+
+		.in-stock {
+			color: color(success);
+			font-weight: 600;
+		}
+
+		.out-of-stock {
+			color: color(error);
+			font-weight: 600;
+		}
+	}
+
+	.toy-navigation {
+		@include flex($justify: space-between);
+		margin-top: spacing(lg);
+
+		.nav-btn {
+			@include button-variant(color(primary));
+			text-decoration: none;
+
+			&[disabled] {
+				opacity: 0.5;
+				cursor: not-allowed;
+			}
+		}
+	}
+}
+
+// Loading State
+.loader-container {
+	@include flex;
+	min-height: 300px;
+}
+
+// Error State
+.error-container {
+	text-align: center;
+	padding: spacing(xl);
+
+	h2 {
+		color: color(error);
+		margin-bottom: spacing(md);
+	}
+
+	.btn {
+		@include button-variant(color(primary));
+	}
+}
+
+// Messages Section
+.messages-container {
+	background: color(background, light);
+	border-radius: layout(border-radius);
+	padding: spacing(lg);
+	margin-top: spacing(lg);
+
+	h3 {
+		@include heading('lg');
+		margin-bottom: spacing(md);
+	}
+
+	.messages-list {
+		@include flex(column);
+		gap: spacing(sm);
+	}
+
+	.message-item {
+		background: color(background, white);
+		padding: spacing(md);
+		border-radius: layout(border-radius);
+		border: 1px solid color(border);
+
+		.message-meta {
+			@include flex($justify: space-between);
+			margin-top: spacing(xs);
+			font-size: map-get(map-get($typography, font-size), sm);
+			color: color(text, muted);
+		}
+	}
+}
+
+// Form Styles
+.add-message-form {
+	@include flex(column);
+	gap: spacing(sm);
+	margin-top: spacing(md);
+
+	textarea {
+		width: 100%;
+		padding: spacing(sm);
+		border: 1px solid color(border);
+		border-radius: layout(border-radius);
+		resize: vertical;
+		min-height: 100px;
+
+		&:focus {
+			outline: none;
+			border-color: color(primary);
+		}
+	}
+
+	button {
+		@include button-variant(color(primary));
+		align-self: flex-end;
+	}
+}

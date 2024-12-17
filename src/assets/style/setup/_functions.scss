@@ -1,0 +1,18 @@
+@function color($color, $tone: null) {
+	@if ($tone) {
+		@return map-get(map-get($colors, $color), $tone);
+	}
+	@return map-get($colors, $color);
+}
+
+@function layout($key) {
+	@return map-get($layout, $key);
+}
+
+@function breakpoint($point) {
+	@return map-get($breakpoints, $point);
+}
+
+@function spacing($size) {
+	@return map-get($spacing, $size);
+}

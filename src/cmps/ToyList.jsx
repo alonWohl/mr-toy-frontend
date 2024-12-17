@@ -5,19 +5,25 @@ export function ToyList({ toys, onRemoveToy, addToyCart, isAdmin }) {
 	return (
 		<ul className="toy-list clean-list">
 			{toys.map(toy => (
-				<ToyPreview key={toy._id} toy={toy}>
-					{isAdmin && (
-						<section className="toy-actions flex justify-between">
-							<button className="btn">
-								<Link to={`/toy/edit/${toy._id}`}>Edit</Link>
+				<li key={toy._id} className="toy-preview-container">
+					<ToyPreview toy={toy}>
+						<div className="toy-preview__actions">
+							{isAdmin && (
+								<div className="admin-actions">
+									<Link to={`/toy/edit/${toy._id}`} className="btn btn-edit">
+										Edit
+									</Link>
+									<button className="btn btn-remove" onClick={() => onRemoveToy(toy._id)}>
+										X
+									</button>
+								</div>
+							)}
+							<button className="btn btn-cart" onClick={() => addToyCart(toy)}>
+								Add to cart
 							</button>
-							<button className="btn" onClick={() => onRemoveToy(toy._id)}>
-								X
-							</button>
-						</section>
-					)}
-					<button onClick={() => addToyCart(toy)}>Add to cart</button>
-				</ToyPreview>
+						</div>
+					</ToyPreview>
+				</li>
 			))}
 		</ul>
 	)

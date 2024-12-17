@@ -1,40 +1,97 @@
 .dashboard {
-	padding: 16px;
-	max-width: 1200px;
-	margin: 0 auto;
-}
+	@include container;
+	min-height: 100vh;
+	background-color: color(background, light);
 
-.dashboard h1 {
-	font-size: 28px;
-	font-weight: bold;
-	margin-bottom: 20px;
-}
+	&__header {
+		margin-bottom: spacing(xl);
 
-.charts-container {
-	display: grid;
-	gap: 20px;
-}
-
-.chart-wrapper {
-	background-color: white;
-	border-radius: 8px;
-	padding: 16px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	height: 400px;
-}
-
-@media (min-width: 768px) {
-	.charts-container {
-		grid-template-columns: repeat(2, 1fr);
+		h1 {
+			@include heading('xl');
+			color: color(text, primary);
+			margin-bottom: spacing(md);
+			padding-bottom: spacing(md);
+			border-bottom: 2px solid color(border);
+		}
 	}
 
-	.line-chart {
-		grid-column: span 2;
+	&__charts {
+		@include grid(2, spacing(md));
+
+		@include mobile {
+			grid-template-columns: 1fr;
+		}
+
+		.chart-wrapper {
+			@include card;
+			padding: spacing(md);
+			height: 400px;
+			@include flex(column);
+
+			&__header {
+				margin-bottom: spacing(md);
+				padding-bottom: spacing(sm);
+				border-bottom: 1px solid color(border);
+
+				h2 {
+					font-size: map-get(map-get($typography, font-size), lg);
+					color: color(text, secondary);
+					font-weight: 600;
+				}
+			}
+
+			&__content {
+				flex-grow: 1;
+				position: relative;
+			}
+		}
+
+		.line-chart {
+			grid-column: span 2;
+
+			@include mobile {
+				grid-column: span 1;
+			}
+		}
+	}
+
+	// Loading State
+	&__loading {
+		@include flex;
+		min-height: 400px;
+
+		.loader {
+			border: 3px solid color(border);
+			border-radius: 50%;
+			border-top: 3px solid color(text, primary);
+			width: 40px;
+			height: 40px;
+			animation: spin 1s linear infinite;
+		}
 	}
 }
 
-@media (max-width: 767px) {
-	.charts-container {
-		grid-template-columns: 1fr;
+// Chart Tooltip
+.chart-tooltip {
+	background-color: rgba(color(background, white), 0.95);
+	border: 1px solid color(border);
+	border-radius: layout(border-radius);
+	padding: spacing(sm);
+	box-shadow: map-get($shadows, base);
+
+	p {
+		margin: spacing(xs) 0;
+		color: color(text, secondary);
+		font-size: map-get(map-get($typography, font-size), sm);
+	}
+}
+
+// Animation
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
 	}
 }

@@ -1,7 +1,38 @@
 .toy-index {
-	.pagination {
-		display: flex;
-		justify-content: center;
-		align-items: center;
+	@include container;
+	padding: spacing(lg);
+
+	&-header {
+		@include flex($justify: space-between, $align: flex-start);
+		margin-bottom: spacing(lg);
+		gap: spacing(md);
+
+		@include mobile {
+			flex-direction: column;
+		}
+
+		.add-toy-btn {
+			@include button-variant(color(success));
+			text-decoration: none;
+			white-space: nowrap;
+		}
+	}
+
+	.empty-state {
+		@include flex(column, center, center);
+		padding: spacing(xxl);
+		text-align: center;
+		background-color: color(background, light);
+		border-radius: layout(border-radius);
+		margin: spacing(xl) 0;
+
+		h2 {
+			color: color(text, primary);
+			margin-bottom: spacing(sm);
+		}
+
+		p {
+			color: color(text, secondary);
+		}
 	}
 }

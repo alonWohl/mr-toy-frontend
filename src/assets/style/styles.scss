@@ -1,6 +1,8 @@
 // SETUP //
 
 @import 'setup/vars';
+@import 'setup/functions';
+@import 'setup/mixins';
 @import 'setup/typography.css';
 
 // BASE //
@@ -13,9 +15,11 @@
 // VIEWS //
 @import 'views/toy-index';
 @import 'views/home-page';
+@import 'views/toy-details';
 
 // CMPS //
 @import 'cmps/app-header';
+@import 'cmps/loader';
 @import 'cmps/toy-list';
 @import 'cmps/toy-filter';
 @import 'cmps/dashboard';

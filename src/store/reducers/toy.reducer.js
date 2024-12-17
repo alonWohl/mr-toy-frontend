@@ -5,6 +5,8 @@ export const ADD_TOY = 'ADD_TOY'
 export const REMOVE_TOY = 'REMOVE_TOY'
 export const UPDATE_TOY = 'UPDATE_TOY'
 export const TOY_UNDO = 'TOY_UNDO'
+export const ADD_TOY_MSG = 'ADD_TOY_MSG'
+export const REMOVE_TOY_MSG = 'REMOVE_TOY_MSG'
 
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 export const SET_FILTER_BY = 'SET_FILTER_BY'
@@ -82,6 +84,16 @@ export function toyReducer(state = initialStale, action) {
 				chartsData: action.chartsData
 			}
 
+		case ADD_TOY_MSG:
+			return {
+				...state,
+				toys: state.toys.map(toy => (toy._id === action.toyId ? { ...toy, msgs: [...(toy.msgs || []), action.msg] } : toy))
+			}
+		case REMOVE_TOY_MSG:
+			return {
+				...state,
+				toys: state.toys.map(toy => (toy._id === action.toyId ? { ...toy, msgs: toy.msgs.filter(msg => msg.id !== action.msgId) } : toy))
+			}
 		default:
 			return state
 	}

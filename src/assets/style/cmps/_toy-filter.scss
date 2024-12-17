@@ -1,88 +1,98 @@
 .toy-filter {
 	width: 100%;
-	background: var(--clr2bg);
-	padding: 0.75rem 1.25rem;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	margin-bottom: 0.75rem;
-
 	max-width: 500px;
+	background: color(success);
+	padding: spacing(md);
+	box-shadow: shadow(base);
+	margin-bottom: spacing(md);
+	border-radius: layout(border-radius);
 
+	// Filter Inputs Grid
 	.filter-inputs {
 		display: grid;
 		grid-template-columns: 100px 1fr;
-		gap: 0.5rem;
+		gap: spacing(sm);
 		align-items: center;
 	}
 
+	// Filter Item
 	.filter-item {
 		grid-column: span 2;
 		display: contents;
 
 		label {
 			font-weight: 500;
-			font-size: 0.9rem;
+			font-size: typography(font-size, sm);
 		}
 
 		input,
 		select {
-			padding: 0.5rem 0.75rem;
-			border: none;
-			border-radius: 6px;
-			font-size: 0.9rem;
+			padding: spacing(sm) spacing(md);
+			border: 1px solid transparent;
+			border-radius: layout(border-radius);
+			font-size: typography(font-size, sm);
 			height: 36px;
-			background: white;
+			background: color(background, white);
+			transition: all 0.2s ease;
 
 			&:focus {
 				outline: none;
-				border-color: var(--clr1);
-
-				box-shadow: 0 0 0 3px rgba(var(--clr1), 0.1);
+				border-color: color(primary);
+				box-shadow: 0 0 0 3px rgba(color(primary), 0.1);
 			}
 		}
 	}
 
 	.toy-sort {
-		margin-top: 0.75rem;
+		margin-top: spacing(md);
 	}
 
 	.sort-controls {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
+		@include flex($justify: flex-start);
+		gap: spacing(md);
 
-		@media (max-width: 480px) {
-			gap: 0.5rem;
+		@include mobile {
+			gap: spacing(sm);
 		}
 	}
 
 	.sort-select {
 		height: 36px;
-		padding: 0.5rem 0.75rem;
-		border: none;
-		border-radius: 6px;
-		font-size: 0.9rem;
+		padding: spacing(sm) spacing(md);
+		border: 1px solid transparent;
+		border-radius: layout(border-radius);
+		font-size: typography(font-size, sm);
 		min-width: 120px;
+		background: color(background, white);
+		transition: all 0.2s ease;
 
 		&:focus {
 			outline: none;
-			border-color: var(--clr1);
-			box-shadow: 0 0 0 3px rgba(var(--clr1), 0.1);
+			border-color: color(primary);
+			box-shadow: 0 0 0 3px rgba(color(primary), 0.1);
 		}
 	}
 
 	.sort-direction {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
+		@include flex($justify: flex-start);
+		gap: spacing(sm);
 
 		input[type='checkbox'] {
 			width: 16px;
 			height: 16px;
-			accent-color: var(--clr1);
+			accent-color: color(primary);
+			cursor: pointer;
 		}
 
 		span {
-			font-size: 0.9rem;
+			font-size: typography(font-size, sm);
 		}
+	}
+
+	input:focus,
+	select:focus {
+		outline: none;
+		border-color: color(primary);
+		box-shadow: 0 0 0 3px rgba(color(primary), 0.1);
 	}
 }
