@@ -10,12 +10,11 @@ import { ToyList } from '../cmps/ToyList.jsx'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
 import { ToySort } from '../cmps/toySort.jsx'
 import { PaginationButtons } from '../cmps/PaginationButtons.jsx'
-import { LoadingSpinner } from '../cmps/LoadingSpinner.jsx' // You'll need to create this component
+import { LoadingSpinner } from '../cmps/LoadingSpinner.jsx'
 
 export function ToyIndex() {
 	const dispatch = useDispatch()
 
-	// Selectors
 	const { toys, total, filterBy, isLoading } = useSelector(state => state.toyModule)
 
 	const loggedInUser = useSelector(state => state.userModule.loggedInUser)
@@ -43,7 +42,7 @@ export function ToyIndex() {
 	}
 
 	const onSetSort = sortBy => {
-		setFilter({ ...filterBy, sortBy, pageIdx: 0 }) // Reset page when sorting changes
+		setFilter({ ...filterBy, sortBy, pageIdx: 0 })
 	}
 
 	const setPageIdx = pageIdx => {
