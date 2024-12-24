@@ -31,7 +31,7 @@ export function GoogleMaps() {
 			</div>
 
 			<div style={{ height: '40vh', width: '100%' }} className="map-wrapper">
-				<GoogleMapReact bootstrapURLKeys={{ key: 'AIzaSyA5YAKbctMWmj2etXv-KY7MSXDMGaWr0qs' }} center={coordinates} zoom={zoom}>
+				<GoogleMapReact bootstrapURLKeys={{ key: 'AIzaSyB_ZqFfVc4-rSnfze2iMz6WubXQ6q7XE_s' }} center={coordinates} zoom={zoom}>
 					{branches.map(branch => (
 						<MarkerComponent key={branch.id} lat={branch.lat} lng={branch.lng} text="🛍️" />
 					))}
