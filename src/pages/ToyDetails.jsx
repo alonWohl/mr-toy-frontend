@@ -2,14 +2,20 @@ import { useEffect, useState } from 'react'
 import { toyService } from '../services/toy.service.js'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { ToyMsg } from '../cmps/ToyMsg.jsx'
+import { SET_IS_LOADING } from '../store/reducers/toy.reducer.js'
+import { LoadingSpinner } from '../cmps/LoadingSpinner.jsx'
+import { ToyReviews } from '../cmps/ToyReviews.jsx'
+import { reviewService } from '../services/review.service.js'
 
 export function ToyDetails() {
 	const [toy, setToy] = useState(null)
-	const [isLoading, setIsLoading] = useState(true)
 	const { toyId } = useParams()
 	const navigate = useNavigate()
+	const dispatch = useDispatch()
+
+	const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
 	const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
 
 	useEffect(() => {
@@ -18,14 +24,44 @@ export function ToyDetails() {
 
 	async function loadToy() {
 		try {
-			setIsLoading(true)
+			dispatch({ type: SET_IS_LOADING, isLoading: true })
 			const toy = await toyService.getById(toyId)
 			setToy(toy)
 		} catch (err) {
 			showErrorMsg('Cannot load toy')
 			navigate('/toy')
 		} finally {
-			setIsLoading(false)
+			dispatch({ type: SET_IS_LOADING, isLoading: false })
+		}
+	}
+
+	async function onAddReview(review) {
+		try {
+			if (!loggedInUser) {
+				showErrorMsg('Please log in to add a review')
+				return
+			}
+
+			const reviewToAdd = {
+				txt: review.txt,
+				aboutToyId: toyId
+			}
+
+			await reviewService.add(reviewToAdd)
+			showSuccessMsg('Review added successfully')
+			loadToy()
+		} catch (err) {
+			showErrorMsg('Cannot add review')
+		}
+	}
+
+	async function onRemoveReview(reviewId) {
+		try {
+			await reviewService.remove(reviewId)
+			showSuccessMsg('Review removed successfully')
+			loadToy() // Reload the toy to get updated reviews
+		} catch (err) {
+			showErrorMsg('Cannot remove review')
 		}
 	}
 
@@ -33,12 +69,7 @@ export function ToyDetails() {
 		navigate('/toy')
 	}
 
-	if (isLoading)
-		return (
-			<div className="loader-container">
-				<div className="loader">Loading...</div>
-			</div>
-		)
+	if (isLoading) return <LoadingSpinner />
 
 	if (!toy)
 		return (
@@ -86,7 +117,7 @@ export function ToyDetails() {
 				</div>
 
 				<ToyMsg toy={toy} loggedInUser={loggedInUser} onAddMsg={loadToy} />
-
+				<ToyReviews reviews={toy.givenReviews || []} isLoading={isLoading} loggedInUser={loggedInUser} onAddReview={onAddReview} onRemoveReview={onRemoveReview} />
 				<div className="toy-navigation">
 					<Link to={`/toy/${toy.prevToyId}`} className="nav-btn prev" disabled={!toy.prevToyId}>
 						← Previous
